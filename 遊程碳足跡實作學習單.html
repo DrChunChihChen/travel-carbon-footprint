@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>115年遊程碳足跡實作會報｜學習單 (互動網頁版與典範範例)</title>
+  <style>
+    :root {
+      --primary: #15803d;
+      --primary-light: #22c55e;
+      --primary-dark: #14532d;
+      --primary-bg: #f0fdf4;
+      --accent-warm: #d97706;
+      --accent-amber: #fef3c7;
+      --accent-sky: #0284c7;
+      --accent-sky-bg: #e0f2fe;
+      --accent-rose: #e11d48;
+      --accent-rose-bg: #ffe4e6;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --border-dark: #94a3b8;
+      --card-bg: #ffffff;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    /* Fixed Top Control Bar */
+    #top-nav {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      z-index: 1000;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-brand h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: -0.2px;
+    }
+    .badge-pill {
+      background: var(--primary-bg);
+      color: var(--primary);
+      border: 1px solid #bbf7d0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      outline: none;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    .btn-accent {
+      background: #f59e0b;
+      color: #fff;
+    }
+    .btn-accent:hover {
+      background: #d97706;
+    }
+    .btn-outline {
+      background: #fff;
+      color: var(--text-main);
+      border-color: var(--border-color);
+    }
+    .btn-outline:hover {
+      background: #f1f5f9;
+      border-color: var(--border-dark);
+    }
+    .btn-danger-outline {
+      background: #fff;
+      color: var(--accent-rose);
+      border-color: #fecdd3;
+    }
+    .btn-danger-outline:hover {
+      background: #fff1f2;
+    }
+
+    /* Container */
+    .sheet-wrapper {
+      max-width: 1080px;
+      margin: 1.5rem auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      padding: 2.5rem 3rem;
+    }
+
+    /* Header Signatures & Titles */
+    .top-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px dashed #e2e8f0;
+    }
+    .sign-box {
+      border: 1px solid var(--border-color);
+      background: #f8fafc;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sign-box label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .sign-box input {
+      border: none;
+      background: transparent;
+      border-bottom: 1px solid var(--border-dark);
+      padding: 0.2rem 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      width: 60%;
+      outline: none;
+    }
+
+    .main-title-block {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .main-title-block h2 {
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      letter-spacing: 0.5px;
+    }
+    .main-title-block .sub-heading {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 0.35rem;
+    }
+
+    /* Meta Table (休閒農業區/遊程名稱) */
+    .meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.25rem;
+    }
+    .meta-table th {
+      background: #f1f5f9;
+      color: var(--text-main);
+      padding: 0.6rem 1rem;
+      text-align: center;
+      font-weight: 700;
+      width: 15%;
+      border: 1px solid var(--border-color);
+    }
+    .meta-table td {
+      padding: 0.5rem 0.8rem;
+      border: 1px solid var(--border-color);
+      width: 35%;
+    }
+    .meta-table input {
+      width: 100%;
+      border: none;
+      padding: 0.3rem 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0f172a;
+      outline: none;
+    }
+
+    /* Goal Box */
+    .goal-box {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-left: 5px solid var(--primary);
+      padding: 0.85rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      color: #065f46;
+      margin-bottom: 2rem;
+    }
+    .goal-box strong {
+      color: var(--primary-dark);
+    }
+
+    /* Part Sections */
+    .part-banner {
+      background: linear-gradient(90deg, #166534, #15803d);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 800;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      margin: 2.25rem 0 1.25rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .part-banner.part-b {
+      background: linear-gradient(90deg, #0369a1, #0284c7);
+    }
+
+    .section-title {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .sec-num {
+      background: #e2e8f0;
+      color: #334155;
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    .form-group-block {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Tables in sheet */
+    .sheet-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      margin: 0.75rem 0;
+    }
+    table.sheet-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+    table.sheet-table th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+    table.sheet-table td {
+      padding: 0.45rem 0.65rem;
+      border: 1px solid var(--border-color);
+      vertical-align: middle;
+      background: #fff;
+    }
+    table.sheet-table tr.example-row td {
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    table.sheet-table input, table.sheet-table select, table.sheet-table textarea {
+      width: 100%;
+      border: 1px solid transparent;
+      padding: 0.35rem 0.5rem;
+      font-size: 0.88rem;
+      font-family: inherit;
+      color: #0f172a;
+      border-radius: 4px;
+      background: transparent;
+      outline: none;
+      transition: all 0.15s ease;
+    }
+    table.sheet-table input:focus, table.sheet-table select:focus, table.sheet-table textarea:focus {
+      background: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(34,197,94,0.2);
+    }
+    table.sheet-table input:hover, table.sheet-table select:hover, table.sheet-table textarea:hover {
+      border-color: #cbd5e1;
+    }
+
+    .table-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-sm {
+      padding: 0.25rem 0.6rem;
+      font-size: 0.78rem;
+      border-radius: 6px;
+    }
+
+    /* Checkbox & radio styles */
+    .check-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      align-items: center;
+    }
+    .check-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.92rem;
+      cursor: pointer;
+    }
+    .check-label input[type="checkbox"], .check-label input[type="radio"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* Highlight Banner & Formula */
+    .calc-summary-strip {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 0.85rem 1.25rem;
+      margin-top: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .calc-summary-stat {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .calc-summary-stat .num {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+    }
+
+    .diff-summary-strip {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-top: 0.75rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    .diff-cell .lbl {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .diff-cell .val {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      margin-top: 0.2rem;
+    }
+    .diff-cell.highlight-reduction .val {
+      color: #0284c7;
+    }
+    .diff-cell.highlight-rate .val {
+      color: #15803d;
+    }
+
+    /* Info card preview modal */
+    #card-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    #card-modal.open {
+      display: flex;
+    }
+    .tourist-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 18px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .tourist-card-header {
+      background: linear-gradient(135deg, #15803d, #10b981);
+      color: #fff;
+      padding: 1.75rem 2rem;
+      position: relative;
+    }
+    .tourist-card-body {
+      padding: 1.75rem 2rem;
+    }
+
+    /* Print Formatting (Perfect A4) */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding-bottom: 0 !important;
+      }
+      #top-nav, .table-actions, .btn-no-print {
+        display: none !important;
+      }
+      .sheet-wrapper {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+      }
+      .part-banner {
+        color: #000 !important;
+        background: #e2e8f0 !important;
+        border: 1px solid #94a3b8 !important;
+        page-break-after: avoid;
+      }
+      .form-group-block {
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid;
+      }
+      table.sheet-table th {
+        background: #f1f5f9 !important;
+        color: #000 !important;
+      }
+      input, textarea, select {
+        border: none !important;
+        background: transparent !important;
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation -->
+  <header id="top-nav">
+    <div class="nav-brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+        <path d="M12 6v6l4 2"/>
+      </svg>
+      <div>
+        <h1>115年遊程碳足跡實作會報｜學習單系統</h1>
+        <div style="font-size:0.75rem; color:var(--text-muted);">1-1 低碳遊程盤點與碳排計算 ＋ 1-2 減碳方案研擬與遊程優化</div>
+      </div>
+      <span class="badge-pill">休閒農業區低碳培力</span>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-accent" onclick="loadBenchmarkExample()" title="載入宜蘭冬山米鄉低碳遊程完整典範">
+        ✨ 載入完整典範範例 (冬山米香低碳行)
+      </button>
+      <button class="btn btn-outline" onclick="previewInfoCard()" title="預覽遊客低碳資訊小卡">
+        🏷️ 預覽遊客資訊卡
+      </button>
+      <button class="btn btn-primary" onclick="window.print()" title="輸出為 A4 研討會報告">
+        🖨️ 列印 / 匯出 PDF
+      </button>
+      <button class="btn btn-outline" onclick="exportDataJSON()" title="備份為 JSON 檔案">
+        📥 匯出資料
+      </button>
+      <button class="btn btn-outline" onclick="document.getElementById('import-file').click()" title="載入之前存檔的 JSON">
+        📤 匯入
+      </button>
+      <input type="file" id="import-file" style="display:none;" onchange="importDataJSON(event)" accept=".json">
+      <button class="btn btn-danger-outline" onclick="clearForm()" title="清空所有欄位重頭開始">
+        🧹 清空表單
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Sheet Form -->
+  <main class="sheet-wrapper" id="sheet-app">
+
+    <!-- Signature Header -->
+    <div class="top-meta-grid">
+      <div class="sign-box">
+        <label>填寫人簽名：</label>
+        <input type="text" id="signer-name" placeholder="請簽名或輸入姓名">
+      </div>
+      <div class="sign-box">
+        <label>講師／輔導老師簽核：</label>
+        <input type="text" id="signer-teacher" placeholder="講師簽章核定">
+      </div>
+    </div>
+
+    <!-- Title Block -->
+    <div class="main-title-block">
+      <h2>115年遊程碳足跡實作會報｜學習單</h2>
+      <div class="sub-heading">1-1 低碳遊程盤點與碳排計算 ＋ 1-2 減碳方案研擬與遊程優化</div>
+    </div>
+
+    <!-- Metadata Table -->
+    <table class="meta-table">
+      <tr>
+        <th>休閒農業區</th>
+        <td><input type="text" id="meta-agri-zone" placeholder="例如：宜蘭冬山河休閒農業區"></td>
+        <th>填寫人</th>
+        <td><input type="text" id="meta-author" placeholder="填寫人姓名 / 單位職稱"></td>
+      </tr>
+      <tr>
+        <th>遊程名稱</th>
+        <td><input type="text" id="meta-tour-name" placeholder="例如：冬山米韻·低碳米鄉慢活一日遊"></td>
+        <th>日期</th>
+        <td><input type="date" id="meta-date"></td>
+      </tr>
+    </table>
+
+    <!-- Goal Box -->
+    <div class="goal-box">
+      <strong>🎯 學習目標：</strong> 先完成一條遊程的碳排盤點與初步試算，再找出碳排熱點、研擬替代方案，比較優化前後差異，最後整理成可對外溝通的低碳遊程資訊。
+    </div>
+
+    <!-- ================================================================= -->
+    <!--                           PART A                                  -->
+    <!-- ================================================================= -->
+    <div class="part-banner">
+      <span>PART A ｜ 遊程碳排盤點與初步試算</span>
+      <span style="font-size:0.85rem; font-weight:400; opacity:0.9;">掌握基準線（Baseline）與碳熱點</span>
+    </div>
+
+    <!-- 01 基本資料盤點 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">01</span>
+        <span>遊程基本資料盤點 ── 先把這條遊程的對象、形式與移動方式寫清楚</span>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-top:1rem;">
+        <div>
+          <label style="font-weight:700; font-size:0.9rem; margin-bottom:0.4rem; display:block;">遊程主要客群：</label>
+          <div class="check-grid" id="target-audience-group">
+            <label class="check-label"><input type="checkbox" name="target_aud" value="親子"> 親子</label>
+            <label class="check-label"><input type="checkbox" name="target_aud" value="銀髮"> 銀髮</label>
+            <label class="check-label"><input type="checkbox" name="target_aud" value="學生"> 學生</label>
+            <label class="check-label"><input type="checkbox" name="target_aud" value="一般散客"> 一般散客</label>
+            <label class="check-label"><input type="checkbox" name="target_aud" value="團體"> 團體</label>
+            <div style="display:flex; align-items:center; gap:0.25rem;">
+              <span style="font-size:0.88rem;">其他：</span>
+              <input type="text" id="target-aud-other" style="border-bottom:1px solid #94a3b8; width:120px;" placeholder="自訂客群">
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-weight:700; font-size:0.9rem; margin-bottom:0.4rem; display:block;">預估每團人數：</label>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <input type="number" id="group-size" value="20" min="1" max="500" style="width:100px; padding:0.4rem; font-size:1rem; font-weight:700; border:1px solid var(--border-dark); border-radius:6px; text-align:center;" oninput="updateAllCalculations()">
+            <span style="font-weight:700;">人 / 團</span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">（※ 將作為碳排計算之人均分母）</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-top:1.25rem;">
+        <div>
+          <label style="font-weight:700; font-size:0.9rem; margin-bottom:0.4rem; display:block;">遊程型態：</label>
+          <div class="check-grid">
+            <label class="check-label"><input type="radio" name="tour_duration" value="半日"> 半日</label>
+            <label class="check-label"><input type="radio" name="tour_duration" value="一日" checked> 一日</label>
+            <label class="check-label"><input type="radio" name="tour_duration" value="二日以上"> 二日以上</label>
+            <label class="check-label"><input type="radio" name="tour_duration" value="其他"> 其他</label>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-weight:700; font-size:0.9rem; margin-bottom:0.4rem; display:block;">主要季節／月份：</label>
+          <input type="text" id="tour-season" placeholder="例如：春、夏、秋季（4～10月稻穗金黃期）" style="width:100%; border:1px solid var(--border-color); padding:0.35rem 0.6rem; border-radius:6px;">
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-top:1.25rem;">
+        <div>
+          <label style="font-weight:700; font-size:0.9rem; margin-bottom:0.4rem; display:block;">主要交通方式：</label>
+          <div class="check-grid">
+            <label class="check-label"><input type="checkbox" name="tour_trans" value="遊覽車"> 遊覽車</label>
+            <label class="check-label"><input type="checkbox" name="tour_trans" value="小客車"> 小客車</label>
+            <label class="check-label"><input type="checkbox" name="tour_trans" value="大眾運輸"> 大眾運輸(鐵路/客運)</label>
+            <label class="check-label"><input type="checkbox" name="tour_trans" value="步行/自行車"> 步行/自行車</label>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-weight:700; font-size:0.9rem; margin-bottom:0.4rem; display:block;">是否含餐／住宿：</label>
+          <div class="check-grid">
+            <span>餐：</span>
+            <label class="check-label"><input type="radio" name="has_meal" value="是" checked> 是</label>
+            <label class="check-label"><input type="radio" name="has_meal" value="否"> 否</label>
+            <span style="margin-left:1.5rem;">住宿：</span>
+            <label class="check-label"><input type="radio" name="has_hotel" value="是"> 是</label>
+            <label class="check-label"><input type="radio" name="has_hotel" value="否" checked> 否</label>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.25rem;">
+        <label style="font-weight:700; font-size:0.9rem; margin-bottom:0.4rem; display:block; color:var(--primary-dark);">
+          ⭐ 請用一句話描述這條遊程最想讓遊客記住的特色：
+        </label>
+        <input type="text" id="tour-highlight-oneline" placeholder="例如：用鐵馬慢遊米鄉冬山，大啖在地零里程有機割稻飯，體驗手工炒茶清香！" style="width:100%; border:1px solid var(--primary); padding:0.5rem 0.75rem; border-radius:6px; font-size:0.95rem; font-weight:600; background:#fafffa;">
+      </div>
+    </div>
+
+    <!-- 02 遊程流程與活動資料 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">02</span>
+        <span>遊程流程與活動資料 ── 依實際行程順序填寫</span>
+      </div>
+
+      <div class="sheet-table-wrapper">
+        <table class="sheet-table" id="table-schedule">
+          <thead>
+            <tr>
+              <th style="width:6%;">序</th>
+              <th style="width:11%;">時間</th>
+              <th style="width:20%;">地點／場域</th>
+              <th style="width:30%;">活動內容</th>
+              <th style="width:13%;">停留時間</th>
+              <th>可能使用資源 (電力、燃料、食材、耗材等)</th>
+              <th class="btn-no-print" style="width:5%;">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="example-row">
+              <td>範例</td>
+              <td>09:30</td>
+              <td>遊客中心</td>
+              <td>業者解說遊程重點與安全須知</td>
+              <td>20分鐘</td>
+              <td>電力（麥克風、投影設備）</td>
+              <td>-</td>
+            </tr>
+            <!-- Rows injected by JS or loaded by example -->
+          </tbody>
+        </table>
+      </div>
+      <div class="table-actions btn-no-print">
+        <button class="btn btn-outline btn-sm" onclick="addScheduleRow()">➕ 新增一列行程</button>
+      </div>
+    </div>
+
+    <!-- 03 碳排放來源盤點 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">03</span>
+        <span>碳排放來源盤點 ── 找出交通、餐飲、體驗、住宿、耗材、能源等排放來源</span>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">
+        先記錄「活動數據」，再搭配講師課堂提供之排放係數進行計算；無法確認的資料可先標記「待補」。
+      </p>
+
+      <div class="sheet-table-wrapper">
+        <table class="sheet-table" id="table-inventory">
+          <thead>
+            <tr>
+              <th style="width:12%;">排放類別</th>
+              <th style="width:28%;">盤點內容</th>
+              <th style="width:15%;">活動數據</th>
+              <th style="width:12%;">單位</th>
+              <th style="width:20%;">資料來源／取得方式</th>
+              <th style="width:13%;">完整度</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>交通移動</strong></td>
+              <td><input type="text" id="inv-desc-trans" placeholder="車種、里程、趟次、乘車人數"></td>
+              <td><input type="text" id="inv-val-trans" placeholder="數值"></td>
+              <td><input type="text" id="inv-unit-trans" value="km / 人次"></td>
+              <td><input type="text" id="inv-src-trans" value="地圖、車商、里程表"></td>
+              <td>
+                <select id="inv-status-trans">
+                  <option value="完整">☑ 完整</option>
+                  <option value="待補">☐ 待補</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>體驗活動</strong></td>
+              <td><input type="text" id="inv-desc-act" placeholder="設備、燃料、材料或器具使用量"></td>
+              <td><input type="text" id="inv-val-act" placeholder="數值"></td>
+              <td><input type="text" id="inv-unit-act" value="kg / 組 / 次"></td>
+              <td><input type="text" id="inv-src-act" value="業者紀錄、現場估算"></td>
+              <td>
+                <select id="inv-status-act">
+                  <option value="完整">☑ 完整</option>
+                  <option value="待補">☐ 待補</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>餐飲</strong></td>
+              <td><input type="text" id="inv-desc-food" placeholder="餐數、餐型、主要食材／份量"></td>
+              <td><input type="text" id="inv-val-food" placeholder="數值"></td>
+              <td><input type="text" id="inv-unit-food" value="份 / kg"></td>
+              <td><input type="text" id="inv-src-food" value="餐廳、供餐業者配方表"></td>
+              <td>
+                <select id="inv-status-food">
+                  <option value="完整">☑ 完整</option>
+                  <option value="待補">☐ 待補</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>住宿</strong></td>
+              <td><input type="text" id="inv-desc-hotel" placeholder="住宿人數、房晚數"></td>
+              <td><input type="text" id="inv-val-hotel" placeholder="數值"></td>
+              <td><input type="text" id="inv-unit-hotel" value="人晚 / 房晚"></td>
+              <td><input type="text" id="inv-src-hotel" value="住宿業者抄表 / 訂單"></td>
+              <td>
+                <select id="inv-status-hotel">
+                  <option value="完整">☑ 完整</option>
+                  <option value="待補">☐ 待補</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>耗材</strong></td>
+              <td><input type="text" id="inv-desc-mat" placeholder="一次性用品、包材、印刷品等"></td>
+              <td><input type="text" id="inv-val-mat" placeholder="數值"></td>
+              <td><input type="text" id="inv-unit-mat" value="個 / kg / 份"></td>
+              <td><input type="text" id="inv-src-mat" value="採購發票、盤點紀錄"></td>
+              <td>
+                <select id="inv-status-mat">
+                  <option value="完整">☑ 完整</option>
+                  <option value="待補">☐ 待補</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>能源</strong></td>
+              <td><input type="text" id="inv-desc-energy" placeholder="用電、瓦斯、柴油等"></td>
+              <td><input type="text" id="inv-val-energy" placeholder="數值"></td>
+              <td><input type="text" id="inv-unit-energy" value="kWh / kg / L"></td>
+              <td><input type="text" id="inv-src-energy" value="台電帳單、瓦斯桶計量"></td>
+              <td>
+                <select id="inv-status-energy">
+                  <option value="完整">☑ 完整</option>
+                  <option value="待補">☐ 待補</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>其他</strong></td>
+              <td><input type="text" id="inv-desc-other" placeholder="廢棄物、用水或其他活動"></td>
+              <td><input type="text" id="inv-val-other" placeholder="數值"></td>
+              <td><input type="text" id="inv-unit-other" value="依項目"></td>
+              <td><input type="text" id="inv-src-other" value="現場紀錄、水單"></td>
+              <td>
+                <select id="inv-status-other">
+                  <option value="完整">☑ 完整</option>
+                  <option value="待補">☐ 待補</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 04 碳排放計算練習 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">04</span>
+        <span>碳排放計算練習 ── 活動數據 × 排放係數 ＝ 碳排放量（kgCO₂e）</span>
+      </div>
+      <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:0.75rem;">
+        ※ 排放係數請依講師指定之資料庫（如環境部產品碳足跡資訊網、觀光署指引表 7.5.2.1-1）填寫，系統將自動計算。
+      </p>
+
+      <div class="sheet-table-wrapper">
+        <table class="sheet-table" id="table-calc">
+          <thead>
+            <tr>
+              <th style="width:5%;">序</th>
+              <th style="width:28%;">排放項目 (服務/活動)</th>
+              <th style="width:14%;">活動數據</th>
+              <th style="width:10%;">數據單位</th>
+              <th style="width:14%;">排放係數</th>
+              <th style="width:15%;">係數單位</th>
+              <th style="width:14%;">碳排放量 (kgCO₂e)</th>
+              <th class="btn-no-print" style="width:5%;">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="example-row">
+              <td>範例</td>
+              <td>小客車接駁（交通移動）</td>
+              <td>120</td>
+              <td>km</td>
+              <td>0.129</td>
+              <td>kgCO2e/km</td>
+              <td>15.5</td>
+              <td>-</td>
+            </tr>
+            <!-- Calculation Rows -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-actions btn-no-print">
+        <button class="btn btn-outline btn-sm" onclick="addCalcRow()">➕ 新增一列計算</button>
+      </div>
+
+      <!-- Realtime Auto Total -->
+      <div class="calc-summary-strip">
+        <div class="calc-summary-stat">
+          <span style="font-weight:700; color:#334155;">合計碳排放量：</span>
+          <span class="num" id="total-emission-group">0.0</span>
+          <span style="font-size:0.9rem; font-weight:700;">kgCO₂e ／ 團</span>
+        </div>
+        <div class="calc-summary-stat">
+          <span style="font-weight:700; color:#334155;">換算每人：</span>
+          <span class="num" id="total-emission-person" style="color:var(--accent-rose);">0.0</span>
+          <span style="font-size:0.9rem; font-weight:700;">kgCO₂e ／ 人</span>
+          <span style="font-size:0.8rem; color:var(--text-muted);">(除以每團 <span id="lbl-group-size">20</span> 人)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 找出碳排熱點 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">05</span>
+        <span>找出碳排熱點 ── 圈出排放最大、最值得優先改善的項目</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+        <span style="font-size:0.85rem; color:var(--text-muted);">排序小技巧：可將各項目排放量除以合計碳排放量算出佔比（%），佔比越高越優先處理。</span>
+        <button class="btn btn-outline btn-sm btn-no-print" onclick="autoAnalyzeHotspots()">⚡ 一鍵由上方計算表自動找出前 3 大熱點</button>
+      </div>
+
+      <div class="sheet-table-wrapper">
+        <table class="sheet-table" id="table-hotspots">
+          <thead>
+            <tr>
+              <th style="width:8%;">順位</th>
+              <th style="width:25%;">高碳排項目</th>
+              <th style="width:16%;">目前排放量 (佔比%)</th>
+              <th style="width:25%;">可能原因</th>
+              <th>初步改善方向</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span style="color:#e11d48; font-weight:800;">1 (首位)</span></td>
+              <td><input type="text" id="hot-1-item" placeholder="例如：跨縣市自用車長途駕駛接駁"></td>
+              <td><input type="text" id="hot-1-val" placeholder="例如：304.5 kgCO2e (58.5%)"></td>
+              <td><textarea id="hot-1-reason" rows="2" placeholder="說明原因：低承載自用車輛行駛里程長，燃燒化石燃料排碳極高"></textarea></td>
+              <td><textarea id="hot-1-dir" rows="2" placeholder="改善方向：改以台鐵軌道列車直達宜蘭，當地改乘低碳電輔車"></textarea></td>
+            </tr>
+            <tr>
+              <td><span style="color:#d97706; font-weight:800;">2 (次位)</span></td>
+              <td><input type="text" id="hot-2-item" placeholder="例如：午餐外叫商業便當(高碳牛肉)"></td>
+              <td><input type="text" id="hot-2-val" placeholder="例如：148.0 kgCO2e (28.4%)"></td>
+              <td><textarea id="hot-2-reason" rows="2" placeholder="進口牛肉反芻畜牧高碳排，且使用一次性淋膜紙餐盒與塑膠餐具"></textarea></td>
+              <td><textarea id="hot-2-dir" rows="2" placeholder="改採在地有機友善蔬果+割稻飯豆製品土雞肉，採用環保重複用餐盒"></textarea></td>
+            </tr>
+            <tr>
+              <td><span style="color:#0284c7; font-weight:800;">3 (三位)</span></td>
+              <td><input type="text" id="hot-3-item" placeholder="例如：全彩紙本遊程手冊與市售PET瓶裝水"></td>
+              <td><input type="text" id="hot-3-val" placeholder="例如：32.4 kgCO2e (6.2%)"></td>
+              <td><textarea id="hot-3-reason" rows="2" placeholder="原生紙漿印刷厚手冊、隨車發送大量瓶裝水產生塑膠製造與廢棄負擔"></textarea></td>
+              <td><textarea id="hot-3-dir" rows="2" placeholder="全面改用 LINE 數位導覽地圖，鼓勵自備保溫水壺提供在地冷泡茶補給"></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- ================================================================= -->
+    <!--                           PART B                                  -->
+    <!-- ================================================================= -->
+    <div class="part-banner part-b">
+      <span>PART B ｜ 減碳方案研擬與遊程優化</span>
+      <span style="font-size:0.85rem; font-weight:400; opacity:0.9;">設計綠色替代方案 · 驗證減碳成效 · 轉譯對外溝通</span>
+    </div>
+
+    <!-- 06 優化目標選定 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">06</span>
+        <span>優化目標選定 ── 從熱點中選出本次要優先改善的 1～3 項</span>
+      </div>
+
+      <div class="sheet-table-wrapper">
+        <table class="sheet-table" id="table-priorities">
+          <thead>
+            <tr>
+              <th style="width:8%;">優先</th>
+              <th style="width:20%;">改善項目</th>
+              <th style="width:22%;">目前做法／問題</th>
+              <th style="width:22%;">為何優先改善</th>
+              <th style="width:20%;">預計替代方案</th>
+              <th style="width:12%;">可行性</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>第 1 項</strong></td>
+              <td><input type="text" id="prio-item-1" placeholder="項目名稱"></td>
+              <td><textarea id="prio-curr-1" rows="2" placeholder="目前作法"></textarea></td>
+              <td><textarea id="prio-why-1" rows="2" placeholder="為何優先"></textarea></td>
+              <td><textarea id="prio-sol-1" rows="2" placeholder="替代作法"></textarea></td>
+              <td>
+                <select id="prio-feas-1">
+                  <option value="高">🟢 高</option>
+                  <option value="中">🟡 中</option>
+                  <option value="低">🔴 低</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>第 2 項</strong></td>
+              <td><input type="text" id="prio-item-2" placeholder="項目名稱"></td>
+              <td><textarea id="prio-curr-2" rows="2" placeholder="目前作法"></textarea></td>
+              <td><textarea id="prio-why-2" rows="2" placeholder="為何優先"></textarea></td>
+              <td><textarea id="prio-sol-2" rows="2" placeholder="替代作法"></textarea></td>
+              <td>
+                <select id="prio-feas-2">
+                  <option value="高">🟢 高</option>
+                  <option value="中">🟡 中</option>
+                  <option value="低">🔴 低</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>第 3 項</strong></td>
+              <td><input type="text" id="prio-item-3" placeholder="項目名稱"></td>
+              <td><textarea id="prio-curr-3" rows="2" placeholder="目前作法"></textarea></td>
+              <td><textarea id="prio-why-3" rows="2" placeholder="為何優先"></textarea></td>
+              <td><textarea id="prio-sol-3" rows="2" placeholder="替代作法"></textarea></td>
+              <td>
+                <select id="prio-feas-3">
+                  <option value="高">🟢 高</option>
+                  <option value="中">🟡 中</option>
+                  <option value="低">🔴 低</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 07 減碳替代方案研擬 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">07</span>
+        <span>減碳替代方案研擬 ── 交通、一次性用品、餐飲、能源、體驗耗材逐項思考</span>
+      </div>
+
+      <div class="sheet-table-wrapper">
+        <table class="sheet-table" id="table-dimension-solutions">
+          <thead>
+            <tr>
+              <th style="width:14%;">面向</th>
+              <th style="width:24%;">目前狀況</th>
+              <th style="width:24%;">可替代作法</th>
+              <th style="width:20%;">執行需要 (資源/合作)</th>
+              <th>預期效果</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>交通接駁</strong></td>
+              <td><input type="text" id="sol-curr-trans" placeholder="例：各自開車來農場"></td>
+              <td><input type="text" id="sol-alt-trans" placeholder="例：台鐵直達＋電輔自行車串聯"></td>
+              <td><input type="text" id="sol-req-trans" placeholder="例：與冬山站電輔車業者簽特約合約"></td>
+              <td><input type="text" id="sol-eff-trans" placeholder="例：交通碳排劇降 75% 以上"></td>
+            </tr>
+            <tr>
+              <td><strong>一次性用品</strong></td>
+              <td><input type="text" id="sol-curr-disp" placeholder="例：提供每人2瓶瓶裝水、塑膠手套"></td>
+              <td><input type="text" id="sol-alt-disp" placeholder="例：茶水站補水＋自備杯、重複用布手套"></td>
+              <td><input type="text" id="sol-req-disp" placeholder="例：行前通知提醒、採購可清洗棉紗手套"></td>
+              <td><input type="text" id="sol-eff-disp" placeholder="例：零塑膠垃圾，耗材碳排歸零"></td>
+            </tr>
+            <tr>
+              <td><strong>餐飲食材</strong></td>
+              <td><input type="text" id="sol-curr-food" placeholder="例：外叫商業便當(高碳進口牛排)"></td>
+              <td><input type="text" id="sol-alt-food" placeholder="例：在地產地割稻飯(冬山米+友善土雞肉+時令有機蔬菜)"></td>
+              <td><input type="text" id="sol-req-food" placeholder="例：休區田媽媽家政班配合供餐、採購不鏽鋼餐具盒"></td>
+              <td><input type="text" id="sol-eff-food" placeholder="例：食材碳排降低 65%，彰顯農產地特色"></td>
+            </tr>
+            <tr>
+              <td><strong>能源使用</strong></td>
+              <td><input type="text" id="sol-curr-energy" placeholder="例：室內開強冷空調、柴油發電機"></td>
+              <td><input type="text" id="sol-alt-energy" placeholder="例：戶外通風綠蔭棚架、採用一級能效節能設備"></td>
+              <td><input type="text" id="sol-req-energy" placeholder="例：檢視場域遮陽與自然通風環境改善"></td>
+              <td><input type="text" id="sol-eff-energy" placeholder="例：節省空調用電 30%"></td>
+            </tr>
+            <tr>
+              <td><strong>體驗耗材</strong></td>
+              <td><input type="text" id="sol-curr-act" placeholder="例：印製全彩銅版紙導覽手冊"></td>
+              <td><input type="text" id="sol-alt-act" placeholder="例：QR Code 數位雲端手冊、自然植物手作"></td>
+              <td><input type="text" id="sol-req-act" placeholder="例：建置 LINE 官方帳號數位導航選單"></td>
+              <td><input type="text" id="sol-eff-act" placeholder="例：紙張印刷費與碳排降為 0"></td>
+            </tr>
+            <tr>
+              <td><strong>其他：廢棄物</strong></td>
+              <td><input type="text" id="sol-curr-other" placeholder="例：綜合垃圾袋混裝清運焚化"></td>
+              <td><input type="text" id="sol-alt-other" placeholder="例：農場生熟廚餘全堆肥化回饋農田"></td>
+              <td><input type="text" id="sol-req-other" placeholder="例：設置廚餘堆肥桶與志工引導"></td>
+              <td><input type="text" id="sol-eff-other" placeholder="例：廢棄物處理碳排減少 80%"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 08 優化前後碳排比較 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">08</span>
+        <span>優化前後碳排比較 ── 把替代方案換算成數字，確認減碳幅度</span>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">
+        請統一使用「每團」或「每人」為單位（本表統一以每團總量計算，系統會自動同步換算每人減碳量與減碳率）。
+      </p>
+
+      <div class="sheet-table-wrapper">
+        <table class="sheet-table" id="table-compare">
+          <thead>
+            <tr>
+              <th style="width:5%;">序</th>
+              <th style="width:20%;">改善項目</th>
+              <th style="width:21%;">原活動數據與作法</th>
+              <th style="width:21%;">優化後數據與作法</th>
+              <th style="width:11%;">原碳排量 (kgCO₂e)</th>
+              <th style="width:11%;">優化後碳排量 (kgCO₂e)</th>
+              <th style="width:11%;">減碳量 (kgCO₂e)</th>
+              <th class="btn-no-print" style="width:5%;">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="example-row">
+              <td>範例</td>
+              <td>交通接駁改共乘</td>
+              <td>120 km（1人1車×4趟）</td>
+              <td>120 km（共乘1車）</td>
+              <td>15.5</td>
+              <td>4.6</td>
+              <td>10.9</td>
+              <td>-</td>
+            </tr>
+            <!-- Comparison Rows -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-actions btn-no-print">
+        <button class="btn btn-outline btn-sm" onclick="addCompareRow()">➕ 新增一列優化比較</button>
+      </div>
+
+      <!-- Realtime Before vs After Strip -->
+      <div class="diff-summary-strip">
+        <div class="diff-cell">
+          <div class="lbl">優化前總碳排 (每團)</div>
+          <div class="val" id="disp-before-total">0.0 kg</div>
+          <div style="font-size:0.78rem; color:var(--text-muted);">每人約 <span id="disp-before-person">0.0</span> kg</div>
+        </div>
+        <div class="diff-cell">
+          <div class="lbl">優化後總碳排 (每團)</div>
+          <div class="val" id="disp-after-total" style="color:var(--primary);">0.0 kg</div>
+          <div style="font-size:0.78rem; color:var(--text-muted);">每人約 <span id="disp-after-person">0.0</span> kg</div>
+        </div>
+        <div class="diff-cell highlight-reduction">
+          <div class="lbl">總減碳量 (每團)</div>
+          <div class="val" id="disp-reduction-total">0.0 kg</div>
+          <div style="font-size:0.78rem; color:var(--text-muted);">每人減少 <span id="disp-reduction-person">0.0</span> kg</div>
+        </div>
+        <div class="diff-cell highlight-rate">
+          <div class="lbl">減碳率 (Reduction Rate)</div>
+          <div class="val" id="disp-reduction-rate">0.0 %</div>
+          <div style="font-size:0.78rem; color:var(--primary); font-weight:700;">（優化前－優化後）÷ 優化前</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 低碳遊程優化行動表 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">09</span>
+        <span>低碳遊程優化行動表 ── 把方案變成可落地執行的工作</span>
+      </div>
+
+      <div class="sheet-table-wrapper">
+        <table class="sheet-table" id="table-action-plan">
+          <thead>
+            <tr>
+              <th style="width:20%;">工作項目</th>
+              <th style="width:28%;">具體行動</th>
+              <th style="width:14%;">負責人／單位</th>
+              <th style="width:12%;">完成時間</th>
+              <th style="width:14%;">所需資源</th>
+              <th>追蹤方式</th>
+              <th class="btn-no-print" style="width:5%;">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Action Rows Injected -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-actions btn-no-print">
+        <button class="btn btn-outline btn-sm" onclick="addActionPlanRow()">➕ 新增一列行動工作</button>
+      </div>
+    </div>
+
+    <!-- 10 碳排資訊卡草稿 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">10</span>
+        <span>碳排資訊卡草稿 ── 把專業數據轉成遊客看得懂的低碳資訊</span>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">
+        💡 <strong>資訊轉譯提醒：</strong> 對外溝通時，避免只呈現複雜係數；可優先說明「哪裡有減碳、減了多少、遊客可以怎麼一起做到」。
+      </p>
+
+      <table class="sheet-table" style="background:#fff;">
+        <tr>
+          <th style="width:20%;">遊程名稱</th>
+          <td><input type="text" id="card-tour-name" style="font-weight:700; color:var(--primary-dark);" placeholder="自動同步遊程名稱"></td>
+        </tr>
+        <tr>
+          <th>一句話亮點</th>
+          <td><input type="text" id="card-tagline" placeholder="最吸引遊客的低碳特色金句"></td>
+        </tr>
+        <tr>
+          <th>本遊程碳排資訊</th>
+          <td>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span>每人約</span>
+              <input type="text" id="card-per-person" style="width:90px; font-weight:800; color:var(--primary-dark); font-size:1.1rem;" placeholder="6.7">
+              <span>kgCO₂e（依本次盤點試算）</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>主要減碳作法</th>
+          <td>
+            <textarea id="card-methods" rows="3" placeholder="① 綠色運具：搭火車轉乘電輔車漫遊&#10;② 產地低碳割稻飯：在地無毒蔬菜取代進口紅肉&#10;③ 零塑膠自備杯：無紙化數位手冊"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <th>減碳成果</th>
+          <td>
+            <input type="text" id="card-result-text" placeholder="優化前 26.0 kgCO₂e／人 → 優化後 6.7 kgCO₂e／人，約減少 19.3 kgCO₂e／人（74.2%）">
+          </td>
+        </tr>
+        <tr>
+          <th>對遊客的邀請</th>
+          <td>
+            <textarea id="card-invite" rows="2" placeholder="例：一起搭乘共乘接駁、自備水杯、選擇在地餐食，讓旅行更低碳。"></textarea>
+          </td>
+        </tr>
+      </table>
+
+      <div style="margin-top:0.75rem; text-align:right;" class="btn-no-print">
+        <button class="btn btn-outline btn-sm" onclick="previewInfoCard()">🎨 點我展開「精美遊客社群宣傳卡」預覽</button>
+      </div>
+    </div>
+
+    <!-- 11 成果檢核 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">11</span>
+        <span>成果檢核 ── 確保各模組確實落實</span>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem; margin-top:0.5rem;" id="checklist-box">
+        <label class="check-label"><input type="checkbox" id="chk-1" onchange="calcChecklistProgress()"> 已完成至少1條遊程之行程、場域與資源盤點</label>
+        <label class="check-label"><input type="checkbox" id="chk-2" onchange="calcChecklistProgress()"> 已辨識交通、餐飲、體驗、住宿、耗材、能源等主要排放來源</label>
+        <label class="check-label"><input type="checkbox" id="chk-3" onchange="calcChecklistProgress()"> 已完成一版活動數據清單與初步碳排試算</label>
+        <label class="check-label"><input type="checkbox" id="chk-4" onchange="calcChecklistProgress()"> 已找出至少3項主要碳排熱點</label>
+        <label class="check-label"><input type="checkbox" id="chk-5" onchange="calcChecklistProgress()"> 已提出至少1項可執行之減碳替代方案</label>
+        <label class="check-label"><input type="checkbox" id="chk-6" onchange="calcChecklistProgress()"> 已完成至少1項優化前後碳排比較</label>
+        <label class="check-label"><input type="checkbox" id="chk-7" onchange="calcChecklistProgress()"> 已完成減碳量／減碳率試算</label>
+        <label class="check-label"><input type="checkbox" id="chk-8" onchange="calcChecklistProgress()"> 已完成一版可供後續行銷使用之碳排資訊卡草稿</label>
+      </div>
+      <div style="font-size:0.85rem; color:var(--primary); font-weight:700; margin-top:0.6rem;" id="chk-status-text">
+        完成進度：0 / 8 項 (0%)
+      </div>
+    </div>
+
+    <!-- 12 課後追蹤與輔導需求 -->
+    <div class="form-group-block">
+      <div class="section-title">
+        <span class="sec-num">12</span>
+        <span>課後追蹤與輔導需求 ── 作為後續遊程修正與行銷素材製作基礎</span>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:1rem; margin-top:0.75rem;">
+        <div>
+          <label style="font-size:0.9rem; font-weight:700; color:#334155; display:block; margin-bottom:0.25rem;">
+            1. 回到休區後，最優先要補齊哪一項資料？
+          </label>
+          <textarea id="post-1" rows="2" style="width:100%; border:1px solid var(--border-color); border-radius:6px; padding:0.4rem;" placeholder="請具體說明：例如向配合之電輔車租賃行確認充電用電來源、取得休區餐廳農家割稻飯每道菜食材精準重量單據。"></textarea>
+        </div>
+
+        <div>
+          <label style="font-size:0.9rem; font-weight:700; color:#334155; display:block; margin-bottom:0.25rem;">
+            2. 最有機會在近期落實的減碳措施是什麼？
+          </label>
+          <textarea id="post-2" rows="2" style="width:100%; border:1px solid var(--border-color); border-radius:6px; padding:0.4rem;" placeholder="請具體說明：例如行前通知加註自備水杯、停印紙本手冊改用 LINE 官方帳號圖文選單、餐廳全面停止提供一次性木筷。"></textarea>
+        </div>
+
+        <div>
+          <label style="font-size:0.9rem; font-weight:700; color:#334155; display:block; margin-bottom:0.25rem;">
+            3. 哪一項優化措施需要外部專家、政府或合作單位協助？
+          </label>
+          <textarea id="post-3" rows="2" style="width:100%; border:1px solid var(--border-color); border-radius:6px; padding:0.4rem;" placeholder="請具體說明：例如爭取休區電輔自行車專屬充電樁設置補助、輔導在地農家取得綠色餐廳認證、以及向環境部申請碳標籤流程輔導。"></textarea>
+        </div>
+
+        <div>
+          <label style="font-size:0.9rem; font-weight:700; color:#334155; display:block; margin-bottom:0.25rem;">
+            4. 後續希望如何將低碳成果應用在遊程、社群或宣傳素材？
+          </label>
+          <textarea id="post-4" rows="2" style="width:100%; border:1px solid var(--border-color); border-radius:6px; padding:0.4rem;" placeholder="請具體說明：例如將每人減碳 19.3kg 轉化為『相當於為冬山種植 1.6 棵大樹』圖文包，製成企業 ESG 員工旅遊推薦提案簡報。"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Footer Note -->
+    <div style="border-top:1px solid var(--border-color); padding-top:1rem; font-size:0.85rem; color:var(--text-muted); text-align:center;">
+      完成後可作為各休區後續低碳遊程調整、碳排資料追蹤、宣傳資訊整理及成果彙整之基礎資料。
+    </div>
+  </main>
+
+  <!-- Tourist Card Popup Modal -->
+  <div id="card-modal" onclick="if(event.target===this) closeCardModal()">
+    <div class="tourist-card">
+      <div class="tourist-card-header">
+        <span style="background:rgba(255,255,255,0.25); color:#fff; font-size:0.75rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:9999px; text-transform:uppercase;">
+          Taiwan Agro-Tourism Net-Zero Card
+        </span>
+        <h2 id="modal-card-title" style="font-size:1.5rem; font-weight:900; margin-top:0.5rem; line-height:1.25;">冬山米香·茶韻低碳慢活一日遊</h2>
+        <p id="modal-card-tagline" style="font-size:0.95rem; opacity:0.9; margin-top:0.35rem;">騎鐵馬漫遊冬山米鄉，大啖零里程有機割稻飯，手揉清香綠茶！</p>
+      </div>
+
+      <div class="tourist-card-body">
+        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:1.25rem; display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+          <div>
+            <div style="font-size:0.8rem; color:#15803d; font-weight:700;">經科學盤查認證之單人碳足跡</div>
+            <div style="font-size:2.2rem; font-weight:900; color:#14532d; line-height:1.1; margin-top:0.25rem;">
+              <span id="modal-card-footprint">6.7</span> <span style="font-size:1rem; font-weight:600;">kg CO₂e / 人</span>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="background:#22c55e; color:#fff; font-size:0.75rem; font-weight:800; padding:0.3rem 0.6rem; border-radius:6px; display:inline-block;">
+              減碳率 <span id="modal-card-rate">74.2%</span>
+            </div>
+            <div style="font-size:0.75rem; color:#64748b; margin-top:0.35rem;">每人大幅減少 <span id="modal-card-saved">19.3</span> kg</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.25rem;">
+          <h4 style="font-size:0.95rem; font-weight:700; color:#1e293b; margin-bottom:0.4rem;">🌱 這趟旅程我們共同完成的減碳行動：</h4>
+          <div id="modal-card-methods-list" style="font-size:0.88rem; color:#475569; line-height:1.6; background:#f8fafc; padding:0.75rem 1rem; border-radius:8px; border:1px solid #e2e8f0; white-space:pre-line;">
+            • 搭乘火車轉乘低碳電輔自行車，穿梭米鄉田間步道
+            • 品嘗 5 公里內冬山有機高雄147號米與友善放山土雞
+            • 自帶水杯補給在地冬山素馨紅茶，全程零一次性耗材
+          </div>
+        </div>
+
+        <div style="background:#eff6ff; border-left:4px solid #3b82f6; padding:0.75rem 1rem; border-radius:0 8px 8px 0; font-size:0.85rem; color:#1e40af; margin-bottom:1.5rem;">
+          <strong>💌 致旅客的一封信：</strong>
+          <span id="modal-card-invitation">感謝您選擇友善土地的低碳旅遊方式，每減少 12 公斤碳排放，就相當於為台灣土地留存了一整天的純淨呼吸！</span>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.6rem;">
+          <button class="btn btn-outline btn-sm" onclick="closeCardModal()">關閉視窗</button>
+          <button class="btn btn-primary btn-sm" onclick="window.print()">列印資訊卡</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Set today's date by default
+    document.getElementById('meta-date').valueAsDate = new Date();
+
+    // Schedule Dynamic Rows
+    function addScheduleRow(time = '', loc = '', act = '', dur = '', res = '') {
+      const tbody = document.querySelector('#table-schedule tbody');
+      const rowCount = tbody.querySelectorAll('tr:not(.example-row)').length + 1;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="text-align:center; font-weight:700;">${rowCount}</td>
+        <td><input type="text" class="sch-time" value="${time}" placeholder="例如 10:30"></td>
+        <td><input type="text" class="sch-loc" value="${loc}" placeholder="地點名稱"></td>
+        <td><input type="text" class="sch-act" value="${act}" placeholder="活動內容描述"></td>
+        <td><input type="text" class="sch-dur" value="${dur}" placeholder="例如 60分鐘"></td>
+        <td><input type="text" class="sch-res" value="${res}" placeholder="消耗資源"></td>
+        <td class="btn-no-print" style="text-align:center;">
+          <button style="background:none; border:none; color:#f43f5e; cursor:pointer; font-weight:800;" onclick="removeRow(this); renumberSchedule();">✕</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    }
+
+    function renumberSchedule() {
+      const rows = document.querySelectorAll('#table-schedule tbody tr:not(.example-row)');
+      rows.forEach((r, idx) => {
+        r.cells[0].textContent = idx + 1;
+      });
+    }
+
+    // Calculation Dynamic Rows
+    function addCalcRow(name = '', dataVal = '', unit = '', factor = '', factorUnit = '') {
+      const tbody = document.querySelector('#table-calc tbody');
+      const rowCount = tbody.querySelectorAll('tr:not(.example-row)').length + 1;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="text-align:center; font-weight:700;">${rowCount}</td>
+        <td><input type="text" class="calc-name" value="${name}" placeholder="排放項目名稱"></td>
+        <td><input type="number" step="0.01" class="calc-data" value="${dataVal}" placeholder="數據" oninput="recalcRow(this)"></td>
+        <td><input type="text" class="calc-unit" value="${unit}" placeholder="單位"></td>
+        <td><input type="number" step="0.0001" class="calc-factor" value="${factor}" placeholder="係數" oninput="recalcRow(this)"></td>
+        <td><input type="text" class="calc-funit" value="${factorUnit}" placeholder="係數單位"></td>
+        <td style="font-weight:700; text-align:right;"><span class="calc-em-val">0.0</span></td>
+        <td class="btn-no-print" style="text-align:center;">
+          <button style="background:none; border:none; color:#f43f5e; cursor:pointer; font-weight:800;" onclick="removeRow(this); renumberCalc(); updateAllCalculations();">✕</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+      recalcRow(tr.querySelector('.calc-data'));
+    }
+
+    function renumberCalc() {
+      const rows = document.querySelectorAll('#table-calc tbody tr:not(.example-row)');
+      rows.forEach((r, idx) => {
+        r.cells[0].textContent = idx + 1;
+      });
+    }
+
+    function recalcRow(inputElem) {
+      const tr = inputElem.closest('tr');
+      const dataVal = parseFloat(tr.querySelector('.calc-data').value) || 0;
+      const factor = parseFloat(tr.querySelector('.calc-factor').value) || 0;
+      const em = dataVal * factor;
+      tr.querySelector('.calc-em-val').textContent = em.toFixed(2);
+      updateAllCalculations();
+    }
+
+    // Compare Dynamic Rows
+    function addCompareRow(item = '', origData = '', optData = '', origEm = 0, optEm = 0) {
+      const tbody = document.querySelector('#table-compare tbody');
+      const rowCount = tbody.querySelectorAll('tr:not(.example-row)').length + 1;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="text-align:center; font-weight:700;">${rowCount}</td>
+        <td><input type="text" class="comp-item" value="${item}" placeholder="項目名稱"></td>
+        <td><input type="text" class="comp-orig-desc" value="${origData}" placeholder="原做法與數據"></td>
+        <td><input type="text" class="comp-opt-desc" value="${optData}" placeholder="優化後做法與數據"></td>
+        <td><input type="number" step="0.1" class="comp-orig-em" value="${origEm}" oninput="recalcCompareRow(this)" placeholder="0.0"></td>
+        <td><input type="number" step="0.1" class="comp-opt-em" value="${optEm}" oninput="recalcCompareRow(this)" placeholder="0.0"></td>
+        <td style="font-weight:700; color:#0284c7; text-align:right;"><span class="comp-diff-val">0.0</span></td>
+        <td class="btn-no-print" style="text-align:center;">
+          <button style="background:none; border:none; color:#f43f5e; cursor:pointer; font-weight:800;" onclick="removeRow(this); renumberCompare(); updateAllCalculations();">✕</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+      recalcCompareRow(tr.querySelector('.comp-orig-em'));
+    }
+
+    function renumberCompare() {
+      const rows = document.querySelectorAll('#table-compare tbody tr:not(.example-row)');
+      rows.forEach((r, idx) => {
+        r.cells[0].textContent = idx + 1;
+      });
+    }
+
+    function recalcCompareRow(inputElem) {
+      const tr = inputElem.closest('tr');
+      const origEm = parseFloat(tr.querySelector('.comp-orig-em').value) || 0;
+      const optEm = parseFloat(tr.querySelector('.comp-opt-em').value) || 0;
+      const diff = origEm - optEm;
+      tr.querySelector('.comp-diff-val').textContent = diff.toFixed(1);
+      updateAllCalculations();
+    }
+
+    // Action Plan Rows
+    function addActionPlanRow(work = '', act = '', owner = '', time = '', res = '', track = '') {
+      const tbody = document.querySelector('#table-action-plan tbody');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="text" class="act-work" value="${work}" placeholder="工作項目"></td>
+        <td><textarea class="act-act" rows="2" placeholder="具體行動">${act}</textarea></td>
+        <td><input type="text" class="act-owner" value="${owner}" placeholder="負責人"></td>
+        <td><input type="text" class="act-time" value="${time}" placeholder="例如 115年3月"></td>
+        <td><input type="text" class="act-res" value="${res}" placeholder="所需資源"></td>
+        <td><input type="text" class="act-track" value="${track}" placeholder="追蹤方式"></td>
+        <td class="btn-no-print" style="text-align:center;">
+          <button style="background:none; border:none; color:#f43f5e; cursor:pointer; font-weight:800;" onclick="removeRow(this)">✕</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    }
+
+    function removeRow(btn) {
+      const tr = btn.closest('tr');
+      tr.remove();
+    }
+
+    // Central Calculations Sync
+    function updateAllCalculations() {
+      const groupSize = parseInt(document.getElementById('group-size').value) || 1;
+      document.getElementById('lbl-group-size').textContent = groupSize;
+
+      // 1. Calc Table 04
+      const emSpans = document.querySelectorAll('#table-calc .calc-em-val');
+      let totalEm = 0;
+      emSpans.forEach(span => {
+        totalEm += parseFloat(span.textContent) || 0;
+      });
+      document.getElementById('total-emission-group').textContent = totalEm.toFixed(1);
+      const perPerson = totalEm / groupSize;
+      document.getElementById('total-emission-person').textContent = perPerson.toFixed(2);
+
+      // 2. Compare Table 08
+      const origInputs = document.querySelectorAll('#table-compare .comp-orig-em');
+      const optInputs = document.querySelectorAll('#table-compare .comp-opt-em');
+      let totalBefore = 0;
+      let totalAfter = 0;
+      origInputs.forEach(inp => totalBefore += parseFloat(inp.value) || 0);
+      optInputs.forEach(inp => totalAfter += parseFloat(inp.value) || 0);
+
+      const totalDiff = totalBefore - totalAfter;
+      const rate = totalBefore > 0 ? (totalDiff / totalBefore) * 100 : 0;
+
+      document.getElementById('disp-before-total').textContent = totalBefore.toFixed(1) + ' kg';
+      document.getElementById('disp-before-person').textContent = (totalBefore / groupSize).toFixed(1);
+
+      document.getElementById('disp-after-total').textContent = totalAfter.toFixed(1) + ' kg';
+      document.getElementById('disp-after-person').textContent = (totalAfter / groupSize).toFixed(1);
+
+      document.getElementById('disp-reduction-total').textContent = totalDiff.toFixed(1) + ' kg';
+      document.getElementById('disp-reduction-person').textContent = (totalDiff / groupSize).toFixed(1);
+
+      document.getElementById('disp-reduction-rate').textContent = rate.toFixed(1) + ' %';
+
+      // 3. Card draft sync (if auto-sync is desired)
+      const tourName = document.getElementById('meta-tour-name').value;
+      if (tourName) document.getElementById('card-tour-name').value = tourName;
+      document.getElementById('card-per-person').value = (totalAfter / groupSize).toFixed(1);
+      document.getElementById('card-result-text').value = 
+        `優化前 ${(totalBefore / groupSize).toFixed(1)} kgCO₂e／人 → 優化後 ${(totalAfter / groupSize).toFixed(1)} kgCO₂e／人，約減少 ${(totalDiff / groupSize).toFixed(1)} kgCO₂e／人（${rate.toFixed(1)}%）`;
+    }
+
+    // Auto-analyze Hotspots from Table 04
+    function autoAnalyzeHotspots() {
+      const rows = document.querySelectorAll('#table-calc tbody tr:not(.example-row)');
+      const items = [];
+      const totalEm = parseFloat(document.getElementById('total-emission-group').textContent) || 1;
+
+      rows.forEach(r => {
+        const name = r.querySelector('.calc-name').value;
+        const val = parseFloat(r.querySelector('.calc-em-val').textContent) || 0;
+        if (name && val > 0) {
+          items.push({ name, val });
+        }
+      });
+
+      items.sort((a, b) => b.val - a.val);
+
+      if (items.length > 0) {
+        document.getElementById('hot-1-item').value = items[0].name;
+        document.getElementById('hot-1-val').value = `${items[0].val.toFixed(1)} kgCO₂e (${((items[0].val / totalEm) * 100).toFixed(1)}%)`;
+      }
+      if (items.length > 1) {
+        document.getElementById('hot-2-item').value = items[1].name;
+        document.getElementById('hot-2-val').value = `${items[1].val.toFixed(1)} kgCO₂e (${((items[1].val / totalEm) * 100).toFixed(1)}%)`;
+      }
+      if (items.length > 2) {
+        document.getElementById('hot-3-item').value = items[2].name;
+        document.getElementById('hot-3-val').value = `${items[2].val.toFixed(1)} kgCO₂e (${((items[2].val / totalEm) * 100).toFixed(1)}%)`;
+      }
+      alert('已依據計算表排碳量大小，自動排序更新前 3 大熱點！');
+    }
+
+    // Checklist Progress
+    function calcChecklistProgress() {
+      const chks = document.querySelectorAll('#checklist-box input[type="checkbox"]');
+      let done = 0;
+      chks.forEach(c => { if(c.checked) done++; });
+      const percent = Math.round((done / chks.length) * 100);
+      document.getElementById('chk-status-text').textContent = `完成進度：${done} / ${chks.length} 項 (${percent}%)`;
+    }
+
+    // Info Card Modal Preview
+    function previewInfoCard() {
+      document.getElementById('modal-card-title').textContent = document.getElementById('card-tour-name').value || '低碳優遊程示範';
+      document.getElementById('modal-card-tagline').textContent = document.getElementById('card-tagline').value || '感受產地生命力，實踐永續低碳好生活！';
+      document.getElementById('modal-card-footprint').textContent = document.getElementById('card-per-person').value || '6.7';
+      document.getElementById('modal-card-methods-list').textContent = document.getElementById('card-methods').value || '• 綠色交通串接\n• 產地有機割稻飯\n• 零一次性備品';
+      document.getElementById('modal-card-invitation').textContent = document.getElementById('card-invite').value || '邀請您一同踏入產地，享受低碳純淨的旅行時光！';
+      
+      const rateText = document.getElementById('disp-reduction-rate').textContent;
+      const savedText = document.getElementById('disp-reduction-person').textContent;
+      document.getElementById('modal-card-rate').textContent = rateText || '74.2%';
+      document.getElementById('modal-card-saved').textContent = savedText || '19.3';
+
+      document.getElementById('card-modal').classList.add('open');
+    }
+
+    function closeCardModal() {
+      document.getElementById('card-modal').classList.remove('open');
+    }
+
+    // =========================================================================
+    //   BENCHMARK EXAMPLE DATA (冬山米香·茶韻低碳綠野一日遊 典範範例)
+    // =========================================================================
+    function loadBenchmarkExample() {
+      if (!confirm('載入完整典範範例將會填入「冬山米香·茶韻低碳慢活一日遊」之完整詳細資料，是否確定載入？')) {
+        return;
+      }
+
+      // Meta
+      document.getElementById('signer-name').value = '陳怡君（珍珠休閒農業區推動委員會 專案經理）';
+      document.getElementById('signer-teacher').value = '張教授（農業部/觀光署低碳旅遊輔導委員）已審定';
+      document.getElementById('meta-agri-zone').value = '宜蘭縣冬山河休閒農業區 ＆ 中山休閒農業區';
+      document.getElementById('meta-author').value = '陳怡君 / 綠色遊程企劃師';
+      document.getElementById('meta-tour-name').value = '冬山米香·茶韻低碳慢活一日遊（產地到餐桌永續體驗行）';
+      document.getElementById('group-size').value = 20;
+      document.getElementById('tour-season').value = '春末至秋季（4～10月，結穗金黃田園景觀）';
+      document.getElementById('tour-highlight-oneline').value = '騎鐵馬漫遊冬山金黃米鄉，品嚐5公里內有機割稻飯，親手揉製產地清香素馨茶，享受零塑減碳森呼吸！';
+
+      // Checkboxes
+      document.querySelectorAll('input[name="target_aud"]').forEach(c => {
+        c.checked = (c.value === '團體' || c.value === '親子');
+      });
+      document.getElementById('target-aud-other').value = '企業 ESG 永續員工日 / 大專院校食農參訪';
+      document.querySelectorAll('input[name="tour_trans"]').forEach(c => {
+        c.checked = (c.value === '大眾運輸' || c.value === '步行/自行車');
+      });
+
+      // Clear existing dynamic rows
+      document.querySelectorAll('#table-schedule tbody tr:not(.example-row)').forEach(r => r.remove());
+      document.querySelectorAll('#table-calc tbody tr:not(.example-row)').forEach(r => r.remove());
+      document.querySelectorAll('#table-compare tbody tr:not(.example-row)').forEach(r => r.remove());
+      document.querySelectorAll('#table-action-plan tbody tr').forEach(r => r.remove());
+
+      // 02 Schedule Rows
+      addScheduleRow('08:45-09:10', '台鐵冬山火車站', '集合報到、發放 LINE 數位出團地圖、領取電輔自行車與安全帽', '25分', '冬山車站大廳公共用電、手機行動網路數據');
+      addScheduleRow('09:10-09:40', '冬山河左岸自行車道', '綠意破風慢騎（冬山車站 ➔ 珍珠休區有機稻米基地，共 5 km）', '30分', '電輔自行車鋰電池電力（約 0.08 kWh/人）');
+      addScheduleRow('09:40-11:15', '珍珠稻作休閒農業區', '食農稻作體驗：赤腳踏入無毒水稻田、手作傳統打穀農具解說、稻草手作注連繩', '95分', '自然農田場域、在地稻草材料、無動力傳統木製打穀機');
+      addScheduleRow('11:30-13:00', '珍珠休區農家生活館', '低碳產地割稻飯品嚐：在地高雄147號米＋三星有機蔥花烘蛋＋冬山友善放山雞肉＋當令無毒鮮蔬，使用洗滌式不鏽鋼雙層便當盒與木筷', '90分', '在地有機原型食材、洗碗機熱水用電、環保餐具');
+      addScheduleRow('13:00-13:30', '冬山林蔭茶道串聯', '輕騎穿越綠色隧道前往中山休閒農業區（約 6 km）', '30分', '自行車踏力與微量輔助電能');
+      addScheduleRow('13:30-15:15', '中山休區有機示範茶園', '茶韻五感體驗：採摘一心二葉、綠茶手工揉捻成型、低溫乾燥烘焙、低碳冷泡品茗', '105分', '小型揉茶機用電（一級節能）、天然柴火溫火焙茶');
+      addScheduleRow('15:15-16:00', '冬山八寶湧泉自然公園', '純天然無動力湧泉親水踏青、生態解說、在地湧泉茶席交流', '45分', '自然重力湧泉流水、無動力場域');
+      addScheduleRow('16:00-16:30', '冬山火車站還車處', '歸還電輔自行車、填寫課後回饋、搭乘台鐵新自強號賦歸', '30分', '車站公共用電、台鐵軌道列車電力');
+
+      // 03 Inventory
+      document.getElementById('inv-desc-trans').value = '全團20人搭台鐵新自強號(台北-冬山來回 178km) + 冬山區內電輔車漫遊 15km';
+      document.getElementById('inv-val-trans').value = '178 km/人 (鐵路) + 15 km/人 (電輔車)';
+      document.getElementById('inv-unit-trans').value = '延人公里 (pkm)';
+      document.getElementById('inv-src-trans').value = '台鐵票根、Google地圖路程、電輔車里程紀錄表';
+      document.getElementById('inv-status-trans').value = '完整';
+
+      document.getElementById('inv-desc-act').value = '稻作農具体驗、稻草手工藝繩材料、手揉綠茶烘焙電力';
+      document.getElementById('inv-val-act').value = '稻草 10 kg + 烘茶電力 3 度';
+      document.getElementById('inv-unit-act').value = 'kg / 度';
+      document.getElementById('inv-src-act').value = '農場工作紀錄簿、烘茶機獨立瓦時計';
+      document.getElementById('inv-status-act').value = '完整';
+
+      document.getElementById('inv-desc-food').value = '產地低碳割稻飯20人份：冬山高雄147號有機米(2.5kg)、冬山放山雞肉(4kg)、三星有機蔥蛋(2kg)、冬山有機絲瓜與地瓜葉(6kg)、苦瓜排骨湯';
+      document.getElementById('inv-val-food').value = '20 份 (總食材量約 20 kg)';
+      document.getElementById('inv-unit-food').value = '份 / kg';
+      document.getElementById('inv-src-food').value = '珍珠田媽媽家政班食材採購驗收單據與食材秤重清單';
+      document.getElementById('inv-status-food').value = '完整';
+
+      document.getElementById('inv-desc-hotel').value = '無住宿（一日遊行程）';
+      document.getElementById('inv-val-hotel').value = '0';
+      document.getElementById('inv-unit-hotel').value = '人晚';
+      document.getElementById('inv-src-hotel').value = '行程企劃書確認無過夜';
+      document.getElementById('inv-status-hotel').value = '完整';
+
+      document.getElementById('inv-desc-mat').value = '全程無一次性紙本手冊(LINE數位化)、自備環保水壺補水(零PET瓶裝水)、自備手套';
+      document.getElementById('inv-val-mat').value = '0 個一次性容器';
+      document.getElementById('inv-unit-mat').value = '個';
+      document.getElementById('inv-src-mat').value = '現場出團清點回報單';
+      document.getElementById('inv-status-mat').value = '完整';
+
+      document.getElementById('inv-desc-energy').value = '電輔自行車充電用電(2度) + 廚房清洗消毒洗碗機用電(3度) + 揉茶用電(2度)';
+      document.getElementById('inv-val-energy').value = '7';
+      document.getElementById('inv-unit-energy').value = 'kWh (度)';
+      document.getElementById('inv-src-energy').value = '場域分電表抄表記錄';
+      document.getElementById('inv-status-energy').value = '完整';
+
+      document.getElementById('inv-desc-other').value = '農家生熟廚餘全堆肥(約 2.5kg) + 少量可回收物(0.5kg) + 用水 1 度';
+      document.getElementById('inv-val-other').value = '廢棄物 3 kg、用水 1 度';
+      document.getElementById('inv-unit-other').value = 'kg / m³';
+      document.getElementById('inv-src-other').value = '農場堆肥桶過秤紀錄、自來水錶';
+      document.getElementById('inv-status-other').value = '完整';
+
+      // 04 Calculation Rows (優化後的實際盤查數據)
+      addCalcRow('台鐵鐵路運輸（台北-冬山來回20人）', '3560', '人·公里(pkm)', '0.0360', 'kgCO₂e/pkm (台鐵自強號2025年係數)');
+      addCalcRow('區內電輔自行車漫遊（20人×15km）', '300', '人·公里(pkm)', '0.0080', 'kgCO₂e/pkm (微型綠電充電評估)');
+      addCalcRow('低碳農家割稻飯（在地友善土雞肉）', '4.0', '公斤', '9.8000', 'kgCO₂e/kg (台灣在地友善禽肉)');
+      addCalcRow('冬山產地有機高雄147號米', '2.5', '公斤', '1.6200', 'kgCO₂e/kg (在地有機白米)');
+      addCalcRow('產地有機時蔬與有機三星蔥', '8.0', '公斤', '0.5200', 'kgCO₂e/kg (在地露天無毒蔬菜)');
+      addCalcRow('割稻飯烹飪天然氣瓦斯', '1.8', '公斤', '2.6300', 'kgCO₂e/kg');
+      addCalcRow('手作體驗耗電與烘茶用電', '7.0', '度(kWh)', '0.6060', 'kgCO₂e/度 (台電電力碳足跡)');
+      addCalcRow('廚餘就地堆肥與少量垃圾處置', '3.0', '公斤', '0.3600', 'kgCO₂e/kg (焚化廠二級係數)');
+
+      // 05 Hotspots
+      document.getElementById('hot-1-item').value = '交通長途位移接駁（台北至冬山往返大眾運輸）';
+      document.getElementById('hot-1-val').value = '128.2 kgCO₂e (占總排 95.8%)';
+      document.getElementById('hot-1-reason').value = '雖然已採用高效率台鐵自強號，但長達 178 公里的城際跨縣市位移，乘客人數乘上里程後，仍為遊程總排放量之絕對主體。';
+      document.getElementById('hot-1-dir').value = '持續堅持搭乘高承載鐵路，並爭取台鐵購票綠色團體優惠；若自駕排碳將高達 600kg 以上，鐵路已是極佳選擇！';
+
+      document.getElementById('hot-2-item').value = '餐飲肉類食材（友善放山土雞肉）';
+      document.getElementById('hot-2-val').value = '39.2 kgCO₂e (占非交通排碳首位)';
+      document.getElementById('hot-2-reason').value = '肉類蛋白質飼育與加工鏈碳排仍高於蔬菜五穀。原案若採進口牛肉則排碳將暴增 4 倍以上。';
+      document.getElementById('hot-2-dir').value = '進一步提高在地有機黃豆天貝、豆腐與冬山椴木香菇等植物性蛋白質比例，設計低碳蔬食特色菜單。';
+
+      document.getElementById('hot-3-item').value = '場域體驗設備與餐具清洗能耗';
+      document.getElementById('hot-3-val').value = '4.2 kgCO₂e (占 3.1%)';
+      document.getElementById('hot-3-reason').value = '清洗20人份不鏽鋼餐具與烘茶設備所需電力，若尖峰時段用電且無太陽能輔助，會累積微量電力碳排。';
+      document.getElementById('hot-3-dir').value = '場館屋頂建置小型太陽光電自發自用，並利用餘熱熱水系統清洗餐具，邁向場域淨零。';
+
+      // 06 Priorities
+      document.getElementById('prio-item-1').value = '城際交通自駕改為「鐵路＋在地電輔車」';
+      document.getElementById('prio-curr-1').value = '傳統出團由遊客各自開 7 台自用休旅車前來，或包租老舊柴油大客車。';
+      document.getElementById('prio-why-1').value = '交通占總碳排超過 75%，改善交通載具的減碳槓桿最高、成效最顯著！';
+      document.getElementById('prio-sol-1').value = '全團於台北搭乘台鐵新自強號直達冬山站，出站即租借休區綠能電輔車漫遊。';
+      document.getElementById('prio-feas-1').value = '高';
+
+      document.getElementById('prio-item-2').value = '商業便當改為「在地食材產地割稻飯」';
+      document.getElementById('prio-curr-2').value = '外叫一般市售牛腩/炸排骨便當，食材里程長且產生 20 個淋膜紙盒與免洗筷。';
+      document.getElementById('prio-why-2').value = '進口紅肉碳排係數極高 (牛肉 37.1 kgCO₂e/kg)，且免洗餐盒製造大量一次性廢棄物。';
+      document.getElementById('prio-sol-2').value = '全食材由冬山珍珠田媽媽家政班採購 5 公里內無毒友善食材，採用不鏽鋼洗滌便當盒。';
+      document.getElementById('prio-feas-2').value = '高';
+
+      document.getElementById('prio-item-3').value = '紙本手冊與瓶裝水「全面數位化與零塑化」';
+      document.getElementById('prio-curr-3').value = '每人發放 1 份全彩厚磅導覽地圖手冊與 2 瓶 PET 瓶裝水。';
+      document.getElementById('prio-why-3').value = '原生紙漿與寶特瓶之製造端碳排高，行程結束後立即淪為廢棄物。';
+      document.getElementById('prio-sol-3').value = '建置 LINE 官方帳號數位圖文地圖與語音解說，現場設茶水站提供在地冷泡茶補給。';
+      document.getElementById('prio-feas-3').value = '高';
+
+      // 07 Dimension Solutions
+      document.getElementById('sol-curr-trans').value = '遊客自行開7輛休旅汽油車(每車約3人)往返台北冬山(178km)及區內各點';
+      document.getElementById('sol-alt-trans').value = '搭乘台鐵自強號直達冬山火車站，區內全程騎乘低碳綠能電輔自行車(15km)';
+      document.getElementById('sol-req-trans').value = '與冬山車站前電輔車租賃業者簽訂特約出團方案、取得台鐵團體預約席位';
+      document.getElementById('sol-eff-trans').value = '每團交通碳排由 430.7kg 驟降至 130.6kg，減碳超過 300 公斤！';
+
+      document.getElementById('sol-curr-disp').value = '隨車發放市售 600ml 瓶裝水 40 瓶、採茶活動使用一次性塑膠防塵套手套';
+      document.getElementById('sol-alt-disp').value = '行前通知自備水杯、各站點設冬山素馨茶飲水站、採茶改用清洗竹簍與布手套';
+      document.getElementById('sol-req-disp').value = '採購 25 組可重複清洗消毒帆布手套、準備不銹鋼茶水保溫桶';
+      document.getElementById('sol-eff-disp').value = '徹底消除 40 支寶特瓶垃圾與 20 副廢塑膠手套，耗材碳排歸零！';
+
+      document.getElementById('sol-curr-food').value = '訂購一般便當店澳洲牛肉燴飯與排骨便當(附免洗紙杯湯碗及免洗竹筷)';
+      document.getElementById('sol-alt-food').value = '休區田媽媽家政班料理：冬山有機147米、冬山友善土雞、三星蔥蛋、產地絲瓜地瓜葉';
+      document.getElementById('sol-req-food').value = '休區農村廚房預約供餐、配備清洗用雙層不鏽鋼割稻便當盒 25 組';
+      document.getElementById('sol-eff-food').value = '避開高碳排進口牛肉，食材碳排由 112.5kg 降至 43.4kg，降幅達 61.4%！';
+
+      document.getElementById('sol-curr-energy').value = '體驗場域未加裝遮陽全開冷氣、活動音響外接老舊小型柴油發電機';
+      document.getElementById('sol-alt-energy').value = '利用稻草編織遮蔭棚架自然通風、採用一級節能音響與台電市電併網';
+      document.getElementById('sol-req-energy').value = '場域農友協助整修遮陽竹棚架與檢修用電線路';
+      document.getElementById('sol-eff-energy').value = '停用柴油發電機，節省燃油 5 公升，用電更安全且減碳 16kg';
+
+      document.getElementById('sol-curr-act').value = '委託印刷廠印製 20 本全彩膠裝導覽折頁手冊(原生銅版紙)';
+      document.getElementById('sol-alt-act').value = '透過 LINE 官方帳號掃描 QR Code 進入「冬山米香隨行包」數位導航與語音聆聽';
+      document.getElementById('sol-req-act').value = '設計 Canva 數位手機圖卡、產製專屬出團 QR Code 立牌';
+      document.getElementById('sol-eff-act').value = '用紙量降為零，避免活動後手冊被隨手丟棄的浪費';
+
+      document.getElementById('sol-curr-other').value = '餐後廚餘與便當紙盒全部投入一般黑色垃圾袋由垃圾車載往焚化爐';
+      document.getElementById('sol-alt-other').value = '剩餘果皮菜葉直接投入農場黑水虻堆肥箱，轉化為無毒農田有機肥料';
+      document.getElementById('sol-req-other').value = '農場設置標示清晰的堆肥桶與志工洗滌分流引導';
+      document.getElementById('sol-eff-other').value = '垃圾焚化量由 15kg 劇減至 3kg 以下，達成資源循環零廢棄';
+
+      // 08 Compare Table Rows
+      addCompareRow('城際往返交通接駁', '7台自用休旅汽油車(178km×7台)', '台鐵新自強號(178km×20人)', 354.2, 128.2);
+      addCompareRow('區內景點接駁移動', '7台休旅車頻繁啟閉怠速(15km×7台)', '綠能電輔自行車騎行(15km×20人)', 76.5, 2.4);
+      addCompareRow('午餐食材：主肉食', '澳洲進口牛肉排 20 份 (5kg)', '在地友善飼養土雞肉 20 份 (4kg)', 185.5, 39.2);
+      addCompareRow('午餐食材：主食與鮮蔬', '一般外購米飯與批發蔬菜', '冬山有機米 (2.5kg) + 產地有機時蔬 (8kg)', 18.2, 8.2);
+      addCompareRow('一次性餐具與包材', '淋膜紙便當盒20個+塑膠餐具', '重覆清洗式不鏽鋼雙層便當盒與木筷', 7.2, 0.4);
+      addCompareRow('活動備品與飲水耗材', 'PET瓶裝水40瓶+全彩銅版紙手冊20本', '自備水壺補水+LINE官方數位導覽', 11.4, 0.2);
+      addCompareRow('場域能源與體驗耗電', '小型柴油發電機(5公升柴油)', '台電市電一級節能烘茶設備', 16.6, 4.2);
+      addCompareRow('終端垃圾焚化處理', '混合垃圾15公斤(送焚化廠)', '落實廚餘堆肥，少量不可回收垃圾3公斤', 5.4, 1.1);
+
+      // 09 Action Plan
+      addActionPlanRow('綠色運具特約簽署', '與冬山車站「綠野電輔車」洽談長期合作優惠，規劃專屬遊程騎行租借與道路救援保險', '陳怡君', '115年3月15日', '合作協議書、安全帽備品', '簽署合作備忘錄 (MOU)');
+      addActionPlanRow('低碳農村廚房標準化', '偕同珍珠田媽媽研發「低碳割稻便當」，固定採購在地有機米與無毒蔬果，建立每季食材清冊', '林阿姨(田媽媽班長)', '115年3月30日', '有機認證單據、不鏽鋼便當盒25組', '食材採購驗收發票與照片');
+      addActionPlanRow('LINE 數位出團系統建置', '製作冬山米鄉 LINE 互動圖文導覽，包含行程時程、茶樹品種小知識與食農闖關地圖', '數位行銷小組', '115年4月10日', 'LINE 官方帳號、Canva 帳號', '實地出團手機掃描測試');
+      addActionPlanRow('茶園無塑體驗裝備升級', '添購可水洗重複使用之採茶帆布手套25雙與手工竹簍，取消拋棄式防塵套', '中山茶園代表', '115年4月20日', '採購經費約 3,500 元', '現場物料盤點表');
+
+      // 10 Card
+      document.getElementById('card-tour-name').value = '冬山米香·茶韻低碳慢活一日遊';
+      document.getElementById('card-tagline').value = '用鐵馬慢遊金黃米鄉，品嚐5公里內有機割稻飯，手揉清香綠茶！';
+      document.getElementById('card-methods').value = '① 綠能交通：搭台鐵列車直達冬山，在農間騎乘電輔車漫遊\n② 產地割稻飯：冬山有機147號米＋在地友善放山雞，不用高碳進口牛\n③ 零廢棄哲學：全面無紙化數位導覽、自備水壺享受產地冷泡茶';
+      document.getElementById('card-invite').value = '邀請您與我們一起踏入冬山水土，用最輕盈的碳足跡，享受最豐饒濃郁的在地人情味！';
+
+      // 11 Checklist
+      for (let i = 1; i <= 8; i++) {
+        document.getElementById(`chk-${i}`).checked = true;
+      }
+      calcChecklistProgress();
+
+      // 12 Post Follow-up
+      document.getElementById('post-1').value = '優先向配合之冬山電輔自行車行取得定期充電用電度數明細，並請田媽媽供餐廚房落實每團割稻飯食材秤重紀錄表記錄。';
+      document.getElementById('post-2').value = '行前通知單全面宣導「自備水杯享受冷泡茶」與「停止提供紙本手冊」，改以出發前 3 天發送 LINE 行程連結，此項零門檻且可立即減廢。';
+      document.getElementById('post-3').value = '希望休閒農業區發展協會及縣府農業處協助引進外部碳足跡輔導顧問，協助本遊程申請環境部「產品碳足跡標籤 (碳標籤)」，提升公信力。';
+      document.getElementById('post-4').value = '將「單人碳足跡僅 6.7 kg、減碳 74.2%」製成吸睛的 ESG 成果提案投影片，主動拜訪內湖科技園區與南港軟體園區之上市櫃企業福委會，爭取綠色員工旅遊訂單！';
+
+      // Trigger recalculations
+      updateAllCalculations();
+      alert('🎉 典範範例已成功載入！所有行程、食材、數據、計算及行動計畫已全面填入。');
+    }
+
+    // Clear Form
+    function clearForm() {
+      if (confirm('確定要清空所有填寫欄位回到空白練習狀態嗎？')) {
+        document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(i => i.value = '');
+        document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+        document.getElementById('group-size').value = 20;
+        document.querySelectorAll('#table-schedule tbody tr:not(.example-row)').forEach(r => r.remove());
+        document.querySelectorAll('#table-calc tbody tr:not(.example-row)').forEach(r => r.remove());
+        document.querySelectorAll('#table-compare tbody tr:not(.example-row)').forEach(r => r.remove());
+        document.querySelectorAll('#table-action-plan tbody tr').forEach(r => r.remove());
+        calcChecklistProgress();
+        updateAllCalculations();
+      }
+    }
+
+    // JSON Export / Import
+    function exportDataJSON() {
+      const data = {
+        meta: {
+          signerName: document.getElementById('signer-name').value,
+          signerTeacher: document.getElementById('signer-teacher').value,
+          agriZone: document.getElementById('meta-agri-zone').value,
+          author: document.getElementById('meta-author').value,
+          tourName: document.getElementById('meta-tour-name').value,
+          date: document.getElementById('meta-date').value,
+          groupSize: document.getElementById('group-size').value,
+          highlight: document.getElementById('tour-highlight-oneline').value
+        },
+        card: {
+          name: document.getElementById('card-tour-name').value,
+          tagline: document.getElementById('card-tagline').value,
+          methods: document.getElementById('card-methods').value,
+          invite: document.getElementById('card-invite').value
+        },
+        timestamp: new Date().toISOString()
+      };
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `遊程碳足跡學習單_${document.getElementById('meta-tour-name').value || '未命名'}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importDataJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (data.meta) {
+            document.getElementById('signer-name').value = data.meta.signerName || '';
+            document.getElementById('signer-teacher').value = data.meta.signerTeacher || '';
+            document.getElementById('meta-agri-zone').value = data.meta.agriZone || '';
+            document.getElementById('meta-author').value = data.meta.author || '';
+            document.getElementById('meta-tour-name').value = data.meta.tourName || '';
+            document.getElementById('meta-date').value = data.meta.date || '';
+            document.getElementById('group-size').value = data.meta.groupSize || 20;
+            document.getElementById('tour-highlight-oneline').value = data.meta.highlight || '';
+          }
+          if (data.card) {
+            document.getElementById('card-tour-name').value = data.card.name || '';
+            document.getElementById('card-tagline').value = data.card.tagline || '';
+            document.getElementById('card-methods').value = data.card.methods || '';
+            document.getElementById('card-invite').value = data.card.invite || '';
+          }
+          updateAllCalculations();
+          alert('資料匯入成功！');
+        } catch(err) {
+          alert('匯入失敗：無效的 JSON 檔案格式');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // Auto load benchmark on first load for demonstration
+    window.addEventListener('DOMContentLoaded', () => {
+      loadBenchmarkExample();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Sensitive config
+config.json
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+
+# Python scripts unrelated to web publication
+*.py
+
+# Word documents
+*.docx
+
+# OS metadata
+.DS_Store
+Thumbs.db
