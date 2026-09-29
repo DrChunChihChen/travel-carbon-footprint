@@ -1762,65 +1762,70 @@
       <div class="slide-header">
         <div>
           <div class="slide-subtitle">Chapter 5.4.3 · Figure 5.4.3.1</div>
-          <h2 class="slide-title">旅遊服務全生命週期流程圖 (圖 5.4.3.1 詳解)</h2>
+          <h2 class="slide-title">旅遊服務全生命週期流程圖 (圖 5.4.3.1 官方指引原圖)</h2>
         </div>
-        <div class="slide-category-tag">圖 5.4.3.1 展開</div>
+        <div class="slide-category-tag">指引核心圖解</div>
       </div>
       <div class="slide-content">
-        <div class="grid-3" style="gap:1.15rem; align-items:stretch;">
-          <!-- Stage 1 -->
-          <div style="background:#fffbeb; border:2px solid #fde68a; border-radius:14px; padding:1.25rem;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-              <span style="background:var(--accent-warm); color:#fff; font-weight:800; padding:0.25rem 0.75rem; border-radius:6px; font-size:0.9rem;">階段一</span>
-              <strong style="color:var(--accent-warm); font-size:1.2rem;">原料取得階段</strong>
+        <div style="display:grid; grid-template-columns: 1.32fr 1fr; gap:1.4rem; align-items:start; flex:1;">
+          
+          <!-- Left: Official Diagram Image with Interactive Zoom -->
+          <div style="background:#ffffff; border:2px solid var(--border-color); border-radius:14px; padding:1rem; box-shadow:var(--card-shadow); display:flex; flex-direction:column; align-items:center;">
+            <div style="width:100%; display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+              <span style="font-weight:800; font-size:1.02rem; color:var(--primary-dark); display:flex; align-items:center; gap:0.4rem;">
+                <span>📊</span> 圖 5.4.3.1 旅遊服務生命週期圖
+              </span>
+              <button onclick="openImageModal()" class="btn-icon" style="font-size:0.85rem; padding:0.25rem 0.65rem; background:#f0fdf4; color:#15803d; border-color:#86efac; cursor:pointer;" title="全螢幕高清放大檢視">
+                🔍 點擊放大高清全圖
+              </button>
             </div>
-            <p style="font-size:0.95rem; color:var(--text-muted); margin-bottom:0.75rem;">原物料生產製造 ＋ 運送至據點</p>
-            <div style="display:flex; flex-direction:column; gap:0.55rem; font-size:0.95rem;">
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #fef3c7;"><strong>門市據點：</strong> 紙張、碳粉、信封、吊牌</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #fef3c7;"><strong>運輸服務：</strong> 車用備品、機票/車票紙張</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #fef3c7;"><strong>餐飲服務：</strong> 主食、肉類、蔬果、免洗餐具</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #fef3c7;"><strong>住宿服務：</strong> 牙膏牙刷備品、衛生紙、拖鞋</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #fef3c7;"><strong>遊樂活動：</strong> 門票、防塵套、一次性折頁</div>
+            
+            <div style="width:100%; border-radius:10px; overflow:hidden; border:1px solid #cbd5e1; background:#ffffff; cursor:pointer; text-align:center; padding:0.4rem;" onclick="openImageModal()" title="點擊放大檢視">
+              <img id="lifecycle-img" src="lifecycle_diagram.png" alt="圖 5.4.3.1 旅遊服務生命週期圖" style="width:100%; height:auto; max-height:430px; object-fit:contain; display:block; margin:0 auto; transition:transform 0.2s ease;">
+            </div>
+
+            <div style="width:100%; margin-top:0.6rem; font-size:0.88rem; color:var(--text-muted); display:flex; justify-content:space-between; align-items:center;">
+              <span>交通部觀光署 114 年 8 月最新第四版規範</span>
+              <span style="color:var(--primary); font-weight:700; cursor:pointer;" onclick="openImageModal()">點擊圖片可全螢幕高清展示 ➔</span>
             </div>
           </div>
 
-          <!-- Stage 2 -->
-          <div style="background:#f0f9ff; border:2px solid #bae6fd; border-radius:14px; padding:1.25rem;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-              <span style="background:var(--accent); color:#fff; font-weight:800; padding:0.25rem 0.75rem; border-radius:6px; font-size:0.9rem;">階段二</span>
-              <strong style="color:var(--accent); font-size:1.2rem;">服務提供階段</strong>
+          <!-- Right: Key Technical Rules & Structure Breakdown -->
+          <div style="display:flex; flex-direction:column; gap:0.95rem;">
+            
+            <!-- 3 Stages Summary Pill -->
+            <div style="background:#ffffff; border:1px solid var(--border-color); border-radius:12px; padding:1.1rem; box-shadow:0 2px 4px rgba(0,0,0,0.03);">
+              <div style="font-size:1.08rem; font-weight:800; color:var(--text-main); margin-bottom:0.65rem; display:flex; align-items:center; gap:0.45rem;">
+                <span>🔄</span> 三大生命週期階段核心要素
+              </div>
+              
+              <div style="display:flex; flex-direction:column; gap:0.55rem; font-size:0.95rem;">
+                <div style="background:#fffbeb; border-left:4px solid var(--accent-warm); padding:0.55rem 0.8rem; border-radius:6px;">
+                  <strong style="color:var(--accent-warm);">1. 原料取得：</strong> 門市庶務用紙/碳粉、運輸車輛備品、餐飲在地/進口食材、客房盥洗用品，含<strong>【運輸至據點】</strong>。
+                </div>
+                <div style="background:#f0f9ff; border-left:4px solid var(--accent); padding:0.55rem 0.8rem; border-radius:6px;">
+                  <strong style="color:var(--accent);">2. 服務提供：</strong> 行程中門市空調照明電、車輛燃油柴油/場站電、餐飲烹調燃氣/冷凍電、客房水電能耗、遊憩活動電力。
+                </div>
+                <div style="background:#f0fdf4; border-left:4px solid var(--primary); padding:0.55rem 0.8rem; border-radius:6px;">
+                  <strong style="color:var(--primary-dark);">3. 廢棄處理：</strong> 門市廢紙、車輛寶特瓶、餐飲廚餘、免洗餐具焚化、客房生活污水，含<strong>【垃圾清運運輸】</strong>與終端處置。
+                </div>
+              </div>
             </div>
-            <p style="font-size:0.95rem; color:var(--text-muted); margin-bottom:0.75rem;">行程中各類能資源直接與間接消耗</p>
-            <div style="display:flex; flex-direction:column; gap:0.55rem; font-size:0.95rem;">
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #e0f2fe;"><strong>門市據點：</strong> 空調用電、照明、電腦用電</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #e0f2fe;"><strong>運輸服務：</strong> 遊覽車柴油、場站用電、冷媒</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #e0f2fe;"><strong>餐飲服務：</strong> 烹調天然氣/瓦斯、冷藏冷凍電</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #e0f2fe;"><strong>住宿服務：</strong> 客房空調照明、熱水洗滌、水度數</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #e0f2fe;"><strong>遊樂活動：</strong> 遊樂設施電力、場域維護用能</div>
+
+            <!-- Crucial Official Notes (註1、註2、註3) -->
+            <div style="background:#fff1f2; border:1px solid #fecdd3; border-radius:12px; padding:1.1rem;">
+              <div style="font-size:1.05rem; font-weight:800; color:#9f1239; margin-bottom:0.55rem; display:flex; align-items:center; gap:0.4rem;">
+                <span>⚠️</span> 邊界關鍵排除三大法定註記（必考點）
+              </div>
+              <ul class="bullet-list" style="font-size:0.92rem; color:#881337; margin-bottom:0; line-height:1.55;">
+                <li><strong>註 1（旅客額外自費）：</strong> 自由活動時間旅客自行付費之餐飲、交通或購物，<strong>不列入計算</strong>。</li>
+                <li><strong>註 2（非人數連動遊樂）：</strong> 不會因遊客增加而提高能耗的公共景點（如參觀<strong>故宮、陽明山步道</strong>），<strong>不列入範疇</strong>。</li>
+                <li><strong>註 3（基礎設施生產豁免）：</strong> 既有道路橋樑、景區固定建築本體的建造與生產過程，<strong>通通不納入計算</strong>！</li>
+              </ul>
             </div>
+
           </div>
 
-          <!-- Stage 3 -->
-          <div style="background:#f0fdf4; border:2px solid #bbf7d0; border-radius:14px; padding:1.25rem;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-              <span style="background:var(--primary); color:#fff; font-weight:800; padding:0.25rem 0.75rem; border-radius:6px; font-size:0.9rem;">階段三</span>
-              <strong style="color:var(--primary-dark); font-size:1.2rem;">廢棄處理階段</strong>
-            </div>
-            <p style="font-size:0.95rem; color:var(--text-muted); margin-bottom:0.75rem;">垃圾清運運輸 ＋ 終端掩埋/焚化/水處理</p>
-            <div style="display:flex; flex-direction:column; gap:0.55rem; font-size:0.95rem;">
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #dcfce7;"><strong>門市據點：</strong> 廢紙匣、辦公垃圾焚化</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #dcfce7;"><strong>運輸服務：</strong> 寶特瓶空罐、廢濾網</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #dcfce7;"><strong>餐飲服務：</strong> 廚餘處理、免洗餐具焚化、廢水</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #dcfce7;"><strong>住宿服務：</strong> 客房生活垃圾焚化、生活污水處置</div>
-              <div style="background:#fff; padding:0.6rem; border-radius:8px; border:1px solid #dcfce7;"><strong>遊樂活動：</strong> 廢包裝垃圾、破損耗材清運</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="callout warning" style="padding:0.85rem 1.35rem;">
-          <div>
-            ⚠️ <strong>基建豁免大原則：</strong> 旅遊過程中參觀之<strong>建築物本身（如故宮博物院建體）、道路橋樑等公共設施、以及場域既有設備的建造生產過程，通通不納入計算！</strong>（否則會導致計算無限發散無法操作）。
-          </div>
         </div>
       </div>
     </section>
@@ -2891,6 +2896,22 @@
     </div>
   </footer>
 
+  <!-- Image Lightbox Modal for Lifecycle Diagram -->
+  <div id="image-modal" onclick="if(event.target===this) closeImageModal()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.85); backdrop-filter:blur(8px); z-index:3000; justify-content:center; align-items:center; padding:1.5rem;">
+    <div style="background:#ffffff; border-radius:16px; max-width:94vw; max-height:94vh; overflow:auto; padding:1.5rem; position:relative; box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid #e2e8f0; padding-bottom:0.75rem;">
+        <div>
+          <h3 style="font-size:1.35rem; font-weight:900; color:#0f172a; margin:0;">圖 5.4.3.1 旅遊服務生命週期圖（完整官方高解析原圖）</h3>
+          <p style="font-size:0.95rem; color:#64748b; margin-top:0.25rem;">交通部觀光署《旅行業遊程碳足跡計算指引》第四版 5.4.3 節規範</p>
+        </div>
+        <button onclick="closeImageModal()" style="background:#f1f5f9; border:1px solid #cbd5e1; font-size:1.1rem; font-weight:800; padding:0.4rem 1rem; border-radius:8px; cursor:pointer; color:#334155;">
+          關閉 (Esc) ✕
+        </button>
+      </div>
+      <img src="lifecycle_diagram.png" alt="圖 5.4.3.1 旅遊服務生命週期圖" style="width:100%; height:auto; display:block; border-radius:8px; border:1px solid #e2e8f0;">
+    </div>
+  </div>
+
   <!-- Overview Modal / Grid Drawer -->
   <div id="overview-modal" onclick="if(event.target===this) toggleOverview()">
     <div class="overview-header">
@@ -3891,6 +3912,18 @@
         currentSlide--;
         updateSlide();
       }
+    }
+
+
+    // Image Lightbox Functions
+    function openImageModal() {
+      const modal = document.getElementById('image-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeImageModal() {
+      const modal = document.getElementById('image-modal');
+      if (modal) modal.style.display = 'none';
     }
 
     function toggleOverview() {
